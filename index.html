@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"  href="css/main.css">
+</head>
+<body>
+ <main class="l-main">
+    <div class="c-banner">
+      <img src="img/undraw_Shopping_re_hdd9.png" alt="Imagem decorativa" class="c-banner__img">
+    </div>
+
+    <div class="form-content">
+      <h1 class="c-form__title">Cadastre-se</h1>
+      <form class="c-form">
+        <section class="c-form__item">
+          <label for="inputName" class="c-form__input-info">Nome:</label>
+          <input type="text" id="inputName" class="c-form__input" placeholder="Nome completo">
+        </section>
+
+        <section class="c-form__item">
+          <label for="inputEmail" class="c-form__input-info">E-mail:</label>
+          <input type="email" id="inputEmail" class="c-form__input" placeholder="E-mail">
+        </section>
+
+        <section class="c-form__item">
+          <label for="inputTel" class="c-form__input-info">Telefone:</label>
+          <input type="tel" id="inputTel" class="c-form__input" placeholder="Telefone">
+        </section>
+
+        <section class="c-form__item">
+          <label for="inputData" class="c-form__input-info">data de nascimento:</label>
+          <input type="date" id="inputData" class="c-form__input">
+        </section>
+
+        <section class="c-form__item">
+          <label for="inputpassword" class="c-form__input-info">senha:</label>
+          <input type="password" id="inputpassword" class="c-form__input">
+        </section>
+        <section class="c-form__item">
+          <label for="inputpasswordConf" class="c-form__input-info">Confirmar senha:</label>
+          <input type="password" id="inputpasswordConf" class="c-form__input">
+        </section>
+
+        <section>
+          <p>A senha deve conter</p>
+          <ul>
+            <li>No mínimo 6 caractes</li>
+            <li>Letras maúsculas e minúsculas</li>
+            <li>Números</li>
+            <li>Símbolos (@#!$)</li>
+          </ul>
+        </section>
+
+        <div class="c-form__gender">
+          <p>Gênero</p>
+          <section class="c-form__item">
+            <label for="inputMale" class="c-form__input-info">Masculino</label>
+            <input type="radio" id="inputMale" class="c-form__input" name="userGender">
+          </section>
+          <section class="c-form__item">
+            <label for="inputfemale" class="c-form__input-info">Feminino</label>
+            <input type="radio" id="inputfemale" class="c-form__input" name="userGender">
+          </section>
+          <section class="c-form__item">
+            <label for="inputOthers" class="c-form__input-info">Outro</label>
+            <input type="radio" id="inputOthers" class="c-form__input" name="userGender">
+          </section>
+        </div>
+
+        <section class="c-form__btn-container">
+          <button class="c-form__button">Cadastrar</button>
+        </section>
+      </form>
+    </div>
+ </main>
+</body>
+</html>

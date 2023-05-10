@@ -1,0 +1,82 @@
+.c-form__title{
+  font-size: 3.2rem;
+  font-weight: 600;
+  margin-bottom: 2.4rem;
+}
+
+.c-form__title::after{
+  content: '';
+  display: block;
+  width: 7rem;
+  height: 0.5rem;
+  background-color: #ff704d;
+  border-radius: 3px;
+  box-shadow: 3px 3px 4px 0px rgba(156, 108, 116,0.7);
+}
+
+.c-form__item{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.6rem;
+}
+
+.c-form__input-info{
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+
+.c-form__input{
+  font-size: 1.4rem;
+  height: 3rem;
+  border: none;
+  border-bottom: 1px solid #ff704d;
+}
+
+.c-form__input:focus-within{
+  border-bottom: 2.5px solid #ff704d;
+  outline: none;
+}
+
+.c-form__input[type = "radio"]{
+  width: 1.6rem;
+  margin: 0rem 0.8rem;
+}
+
+.c-form__gender{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.6rem;
+}
+
+.c-form__gender .c-form__item{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+@media screen and (min-width: 1000px){
+  .c-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2.4rem;
+  }
+  .c-form__gender p{
+    display: block;
+    width: 100%;
+  }
+  .c-form__gender{
+    grid-column: -3/-1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .c-form__gender .c-form__item{
+    margin: 0rem;
+  }
+}
+
+

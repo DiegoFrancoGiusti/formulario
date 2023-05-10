@@ -1,0 +1,35 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html{
+  font-family: 'Inter', sans-serif;
+  font-size: 62.5%
+}
+
+body{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f2c491;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  margin: 0;
+}
+
+p{
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+/*.color1 { #e47506 };
+.color2 { #f2c491 };
+.color3 { #ac5c14 };
+.color4 { #9c6c74 };
+.color5 { #d8beb1 };*/
