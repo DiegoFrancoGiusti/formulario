@@ -15,14 +15,21 @@
 @media screen and (min-width: 1000px){
   .l-main{
     width: 90%;
+    height: 50rem;
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     padding: 2.4rem;
     box-shadow: 4px 4px 10px 4px rgba(156, 108, 116,0.4);
+    overflow: hidden;
   }
   .form-content{
     width: 100%;
+    overflow: scroll;
     padding: 2.4rem 0rem;
+   }
+
+   .form-content::-webkit-scrollbar{
+    display: none;
    }
   
 }
