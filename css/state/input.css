@@ -1,0 +1,23 @@
+.input--error{
+  background-color: rgba(219, 90, 90,0.2);
+  border-bottom: 3px solid #db0000;
+}
+
+.input--valid{
+  background-color: rgba(78, 202, 100,0.2);
+  border-bottom: 3px solid #4eca64;
+}
+
+.message-error{
+  color: #db0000;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0.4rem 0rem 0rem 0rem;
+}
+
+.message-success{
+  color: #139c2c;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0.8rem 0rem 0rem 0rem;
+}

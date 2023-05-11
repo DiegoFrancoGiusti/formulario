@@ -34,6 +34,7 @@
 }
 
 .c-form__input:focus-within{
+  background-color: #fff;
   border-bottom: 2.5px solid #ff704d;
   outline: none;
 }
