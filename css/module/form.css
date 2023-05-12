@@ -58,6 +58,13 @@
   margin-bottom: 0.4rem;
 }
 
+.error-menssage{
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0.4rem 0rem 0rem 0rem;
+  display: none;
+}
+
 @media screen and (min-width: 1000px){
   .c-form{
     display: grid;
