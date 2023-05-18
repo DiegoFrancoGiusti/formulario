@@ -64,58 +64,78 @@ form.addEventListener('submit', event => {
       showMessageError(input,index,'Valor do campo inválido')
       return
     }
+  })
 
-    if(input === inputs[0]){
-      const regexName = /^[a-záãéêíóõçñ ]+$/i
-      regexResult = regexName.test(input.value)
-      
-      if(regexResult === false){
-        showMessageError(input,index,'Nome inválido')
-        return
-      }
+  if(inputs[0]){
+    const regexName = /[a-záãéêíóõçñ]+$/i
+    regexResult = regexName.test(inputs[0].value)
+    
+    if(regexResult === false){
+      showMessageError(inputs[0],0,'Nome inválido')
+      return
+    }
+    hiddenMessageError(inputs[0],0)
+  }
+
+  if(inputs[1]){
+    const regexEmail = /\S+@\S+\.\S+/
+    regexResult = regexEmail.test(inputs[1].value)
+
+    if(regexResult === false){
+      showMessageError(inputs[1],1,'Email inválido')
+      return
     }
 
-    if(input === inputs[1]){
-      const regexEmail = /\S+@\S+\.\S+/
-      regexResult = regexEmail.test(input.value)
+    hiddenMessageError(inputs[1],1)
+  }
 
-      if(regexResult === false){
-        showMessageError(input,index,'Email inválido')
-        return
-      }
+  if(inputs[2]){
+    const telRegex = /(\(?\d{2}\)?\s)?[ ]?(\d{4,5}\-?\d{4})/g
+    regexResult = telRegex.test(inputs[2].value)
+
+    if(regexResult === false){
+      showMessageError(inputs[2],2,'Telefone inválido')
+      return
     }
 
-    if(input === inputs[2]){
-      const telRegex = /(\(?\d{2}\)?\s)?[ ]?(\d{4,5}\-?\d{4})/g
-      const x = telRegex.test(input.value)
+    hiddenMessageError(inputs[2],2)
+  }
 
-      if(x === false){
-        showMessageError(input,index,'Telefone inválido')
-        return
-      }
+  if(inputs[4]){
+    if(x.some(item => item === false)){
+      showMessageError(inputs[4],4,'Senha inválida')
+      return
     }
 
-    if(input === inputs[4]){
-      if(x.some(item => item === false)){
-        showMessageError(input,index,'Senha inválida')
-        return
-      }
+    hiddenMessageError(inputs[4],4)
+  }
+
+  if(inputs[5]){
+    if(inputs[5].value !== inputs[4].value){
+      showMessageError(inputs[5],5,'Senha inválida')
+      return
     }
 
-    if(input === inputs[5]){
-      if(input.value !== inputs[4].value){
-        showMessageError(input,index,'Senha inválida')
-        return
-      }
-    }
+    hiddenMessageError(inputs[5],5)
+  }
 
-    hiddenMessageError(input,index)
     z.innerText = 'Cadastro realizado!'
     z.classList.add('message-success')
     button.insertAdjacentElement('afterend',z)
 
+  inputs.forEach(input => {
+    input.value = ''
   })
-  
+
+  x = null
+
+  passwordRrequiredsItems.forEach(requiredItem => {
+    requiredItem.style.listStyleImage = 'url(../../img/incorrect_icon.png)'
+  })
+
+  setTimeout(() => {
+    z.remove()
+  },2000)
 })
 
 
