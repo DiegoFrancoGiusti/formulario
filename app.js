@@ -23,7 +23,7 @@ const hiddenInputError = (input,index) => {
 }
 
 const isNameValid = input => {
-  const nameRegex = /^[a-záãâàéêíóõôçñ ]+$/i
+  const nameRegex = /^[a-záàãâéêíóõôçñ ]+$/i
   regexResult = nameRegex.test(input.value) 
 
   if(regexResult){
@@ -35,7 +35,7 @@ const isNameValid = input => {
 }
 
 const isEmailValid = input => {
-  const emailRegex = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.[a-zA-Z]{2,}$/
+  const emailRegex = /^[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{2,}$/i
   regexResult = emailRegex.test(input.value)
 
   if(regexResult){
@@ -47,7 +47,7 @@ const isEmailValid = input => {
 }
 
 const isPhoneValid = input => {
-  const phoneRegex = /^(\(?\d{2}\)?)?[ ]?(\d{4,5}\-?\d{4})$/
+  const phoneRegex = /(\(?\d{2}\)?\s)?(\d{4,5}\-?\d{4})/g
   regexResult = phoneRegex.test(input.value)
 
   if(regexResult){
@@ -64,11 +64,24 @@ const isPassworItemsValid = expressions => {
   }
 }
 
-passwordInput.addEventListener('input',event => {
+const isPassworValid = (input,index) => {
+  const isAllTrue = x.some(item => item === false)
+
+  if(!isAllTrue){
+    hiddenInputError(input,index)
+    return true
+  }
+
+  return false
+}
+
+let x = null
+
+passwordInput.addEventListener('input', event => {
   const lowerCaseRegex = /(?=.*[a-z])/
   const upperCaseRegex = /(?=.*[A-Z])/
   const numberRegex = /(?=.*[0-9])/
-  const symbolRegex = /(?=.*[!@#$%&*^~])/
+  const symbolRegex = /(?=.*[!@#$%&*^~+])/
   const voidRegex = /[ ]/
   const expressions = [
     !voidRegex.test(passwordInput.value),
@@ -81,30 +94,56 @@ passwordInput.addEventListener('input',event => {
 
   expressions[0]?hiddenInputError(inputs[4],4):showInputError(inputs[4],4,'A senha não deve conter espaços em branco')
   isPassworItemsValid(expressions)
+
+  x = expressions
 })
+
+const isRepeatPasswordValid = (input,index) => {
+  if(input.value === inputs[4].value){
+    hiddenInputError(input,index)
+    return true
+  }
+
+  return false
+}
 
 form.addEventListener('submit', event => {
   event.preventDefault()
 
   inputs.forEach((input,index) => {
     if(input.value === ''){
-      showInputError(input,index,'Campo obrigatório!')
+      showInputError(input,index,'Campo Obrigatório!')
       return
     }
       hiddenInputError(input,index)
   })
   
   if(!isNameValid(inputs[0])){
-    showInputError(inputs[0],0,'Nome inválido')
+    showInputError(inputs[0],0,'Nome Inválido')
+    return
   }
 
   if(!isEmailValid(inputs[1],1)){
     showInputError(inputs[1],1,'Email Inválido')
+    return
   }
 
   if(!isPhoneValid(inputs[2],2)){
     showInputError(inputs[2],2,'Telefone Inválido')
+    return
   }
+
+  if(!isPassworValid(inputs[4],4)){
+    showInputError(inputs[4],4,'Senha Inválida')
+    return
+  }
+
+  if(!isRepeatPasswordValid(inputs[5],5)){
+    showInputError(inputs[5],5,'Senha Inválida')
+    return
+  }
+
+  
 
   regexResult = null
 })

@@ -10,6 +10,7 @@
 @import 'module/form.css';
 @import 'module/c-button.css';
 @import 'module/c-password-required.css';
+@import 'module/modal.css';
 
 /* STATE */
 @import 'state/input.css'
