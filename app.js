@@ -6,7 +6,7 @@ const passwordRequiredContent = document.querySelectorAll('.c-required__item')
 const passwordInput = inputs[4]
 let regexResult = null
 let modal = null
-let x = null
+let PasswordExpressionsResults = null
 
 const showModal = (nome,email,phone,data) => {
   const modalTemplate = `
@@ -46,10 +46,14 @@ const showModal = (nome,email,phone,data) => {
   body.innerHTML += modalTemplate
 }
 
+const resetValues = () => {
+  location.reload()
+}
+
 const hiddenModal =  event => {
   if(event.target.classList[0] === 'modal-content' || event.target.classList[0] === 'c-form__button'){
-    modal.style.display = 'none'
-    reset()
+    modal.style.display = 'none' 
+    resetValues()
   }
 }
 
@@ -110,7 +114,7 @@ const isPassworItemsValid = expressions => {
 }
 
 const isPassworValid = (input,index) => {
-  const isAllTrue = x.some(item => item === false)
+  const isAllTrue = PasswordExpressionsResults.some(item => item === false)
 
   if(!isAllTrue){
     hiddenInputError(input,index)
@@ -128,17 +132,6 @@ const isRepeatPasswordValid = (input,index) => {
 
   return false
 }
-
-const reset = () => {
-  passwordRequiredContent.forEach((item,index) => {
-   passwordRequiredContent[index].style.listStyleImage = 'url(img/incorrect_icon.png)'
-  })
-  inputs.forEach(input => {
-    console.log(input.value)
-  })
-  regexResult = null
-}
-
 
 passwordInput.addEventListener('input', event => {
   const lowerCaseRegex = /(?=.*[a-z])/
@@ -158,7 +151,7 @@ passwordInput.addEventListener('input', event => {
   expressions[0]?hiddenInputError(inputs[4],4):showInputError(inputs[4],4,'A senha não deve conter espaços em branco')
   isPassworItemsValid(expressions)
 
-  x = expressions
+  PasswordExpressionsResults = expressions
 })
 
 form.addEventListener('submit', event => {
@@ -196,9 +189,8 @@ form.addEventListener('submit', event => {
     showInputError(inputs[5],5,'Senha Inválida')
     return
   }
-
+ 
   showModal(inputs[0],inputs[1],inputs[2],inputs[3])
-
   modal = document.querySelector('.whrapper-modal')
   modal.addEventListener('click',hiddenModal)
 })
