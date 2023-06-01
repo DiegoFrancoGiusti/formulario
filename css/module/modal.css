@@ -1,11 +1,11 @@
 .whrapper-modal{
   width: 100%;
   min-height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: block;
-  background-color: rgba(19, 18, 18, 0.4);
+  background-color: rgba(19, 18, 18, 0.5);
 }
 
 .modal-content{
@@ -22,13 +22,55 @@
   width: 90%;
   padding: 1rem;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.modal-content::after{
+.modal-content::before{
   content: '';
   display: block;
   width: 93%;
   height: 43rem;
   border-radius: 3px;
- background-image: linear-gradient(35deg,#ff704d,#f2c491);
+  background-image: linear-gradient(90deg,#ff704d,#f2c491);
+}
+
+.c-modal__title{
+  font-size: 2.4rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.c-modal__user-info-content{
+  margin-bottom: 1.2rem;
+}
+
+.c-modal__user-info-content p:first-child{
+  font-weight: 600;
+}
+
+.c-modal__user-info{
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 600px) {
+  .c-modal{
+    width: 47rem;
+    height: 36rem;
+  }
+
+  .c-modal__user-info-content{
+    margin-left: 1.6rem;
+  }
+
+  .modal-content::before{
+    content: '';
+    display: block;
+    width: 48rem;
+    height: 37rem;
+    border-radius: 3px;
+    background-image: linear-gradient(90deg,#ff704d,#f2c491);
+  }  
 }

@@ -1,12 +1,57 @@
+const body = document.body
 const form = document.querySelector('.c-form')
 const inputs = document.querySelectorAll('.c-form__input')
 const messageErrorContent = document.querySelectorAll('.error-menssage')
 const passwordRequiredContent = document.querySelectorAll('.c-required__item')
 const passwordInput = inputs[4]
-//const password = []
 let regexResult = null
+let modal = null
+let x = null
 
-console.log(inputs, messageErrorContent, passwordRequiredContent)
+const showModal = (nome,email,phone,data) => {
+  const modalTemplate = `
+  <div class="whrapper-modal">
+    <div class="modal-content">
+      <div class="c-modal">
+        <h2 class="c-modal__title">Cadastro Realizado com Sucesso!</h2>
+        <section>
+          <section class="c-modal__user-info-content">
+            <p>Nome:</p>
+            <p class="c-modal__user-info">${nome.value}</p>
+          </section>
+
+          <section class="c-modal__user-info-content">
+            <p>E-mail:</p>
+            <p class="c-modal__user-info">${email.value}</p>
+          </section>
+
+          <section class="c-modal__user-info-content">
+            <p>Telefone:</p>
+            <p class="c-modal__user-info">${phone.value}</p>
+          </section>
+
+          <section class="c-modal__user-info-content">
+            <p>Data de nascimento:</p>
+            <p class="c-modal__user-info">${data.value}</p>
+          </section>
+        </section>
+
+        <div class="c-form__btn-container">
+          <button class="c-form__button">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+`
+  body.innerHTML += modalTemplate
+}
+
+const hiddenModal =  event => {
+  if(event.target.classList[0] === 'modal-content' || event.target.classList[0] === 'c-form__button'){
+    modal.style.display = 'none'
+    reset()
+  }
+}
 
 const showInputError = (input,index,menssage) => {
   messageErrorContent[index].style.display = 'block'
@@ -75,7 +120,25 @@ const isPassworValid = (input,index) => {
   return false
 }
 
-let x = null
+const isRepeatPasswordValid = (input,index) => {
+  if(input.value === inputs[4].value){
+    hiddenInputError(input,index)
+    return true
+  }
+
+  return false
+}
+
+const reset = () => {
+  passwordRequiredContent.forEach((item,index) => {
+   passwordRequiredContent[index].style.listStyleImage = 'url(img/incorrect_icon.png)'
+  })
+  inputs.forEach(input => {
+    console.log(input.value)
+  })
+  regexResult = null
+}
+
 
 passwordInput.addEventListener('input', event => {
   const lowerCaseRegex = /(?=.*[a-z])/
@@ -97,15 +160,6 @@ passwordInput.addEventListener('input', event => {
 
   x = expressions
 })
-
-const isRepeatPasswordValid = (input,index) => {
-  if(input.value === inputs[4].value){
-    hiddenInputError(input,index)
-    return true
-  }
-
-  return false
-}
 
 form.addEventListener('submit', event => {
   event.preventDefault()
@@ -143,7 +197,8 @@ form.addEventListener('submit', event => {
     return
   }
 
-  
+  showModal(inputs[0],inputs[1],inputs[2],inputs[3])
 
-  regexResult = null
+  modal = document.querySelector('.whrapper-modal')
+  modal.addEventListener('click',hiddenModal)
 })
